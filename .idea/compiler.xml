@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
-      <module name="GithubSearch.app" target="1.8" />
-      <module name="GithubSearch.buildSrc" target="1.8" />
-      <module name="GithubSearch.data" target="1.8" />
-      <module name="GithubSearch.presentation" target="1.8" />
+      <module name="GithubSearch.app" target="11" />
+      <module name="GithubSearch.buildSrc" target="11" />
+      <module name="GithubSearch.data" target="11" />
+      <module name="GithubSearch.presentation" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
