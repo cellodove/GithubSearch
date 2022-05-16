@@ -6,7 +6,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import sun.rmi.server.Dispatcher
 
 class GetGithubReposUseCase(private val githubRepository : GithubRepository) {
     operator fun invoke(
@@ -16,7 +15,7 @@ class GetGithubReposUseCase(private val githubRepository : GithubRepository) {
     ){
         scope.launch(Dispatchers.Main) {
             val deferred = async(Dispatchers.IO){
-                githubRepository.getRepository(owner)
+                githubRepository.getRepos(owner)
             }
             onResult(deferred.await())
         }
