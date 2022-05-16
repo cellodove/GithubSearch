@@ -1,0 +1,8 @@
+<resources>
+  <style name="Theme.GithubSearch.NoActionBar" >
+  <item name="windowActionBar">false</item>
+  <item name="windowNoTitle">true</item>
+</style>
+  <style name="Theme.GithubSearch.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+  <style name="Theme.GithubSearch.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
