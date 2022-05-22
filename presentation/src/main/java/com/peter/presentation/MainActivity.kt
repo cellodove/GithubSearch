@@ -2,11 +2,10 @@ package com.peter.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.peter.presentation.base.BaseActivity
+import com.peter.presentation.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity(){
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate){
+
 }

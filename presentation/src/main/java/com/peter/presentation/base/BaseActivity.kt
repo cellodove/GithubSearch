@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 
-class BaseActivity<VB: ViewBinding>(private val bindingInflater:(inflater: LayoutInflater) -> VB) : AppCompatActivity() {
+abstract class BaseActivity<VB: ViewBinding>(private val bindingInflater:(inflater: LayoutInflater) -> VB) : AppCompatActivity() {
     lateinit var binding : VB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
