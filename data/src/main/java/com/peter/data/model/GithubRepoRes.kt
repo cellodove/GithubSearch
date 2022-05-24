@@ -16,14 +16,21 @@ data class GithubRepoRes (
     @SerializedName("html_url")
     private val _url : String,
 
-    @SerializedName("avatar_url")
-    override val profileImage: String
+    @SerializedName("owner")
+    val owner: Owner
 
 ) : GithubRepo{
-
     override val name: String
         get() = _name
 
     override val url: String
         get() = _url
+
+    override val profileImage: String
+        get() = owner.avatar_url
 }
+
+data class Owner(
+    @SerializedName("avatar_url")
+    val avatar_url : String
+)

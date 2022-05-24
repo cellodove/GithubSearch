@@ -37,6 +37,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
             binding.repoUrl.text = repo.url
             Glide.with(binding.root)
                 .load(repo.profileImage)
+                .override(100,100)
                 .into(binding.profileImage)
         }
     }
