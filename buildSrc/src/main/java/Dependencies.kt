@@ -19,6 +19,8 @@ object Versions {
     const val JUNIT = "4.13.2"
     const val ANDROID_JUNIT = "1.1.2"
     const val ESPRESSO_CORE = "3.3.0"
+
+    const val GLIDE_VER = "4.11.0"
 }
 
 object Kotlin {
@@ -54,6 +56,8 @@ object Libraries {
     const val RETROFIT_CONVERTER_GSON    = "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT}"
     const val OKHTTP                     = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
     const val OKHTTP_LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
+    const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE_VER}"
+    const val GLIDE_ANNOTATION = "com.github.bumptech.glide:compiler:${Versions.GLIDE_VER}"
 }
 
 object Test {
