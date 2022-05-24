@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.peter.presentation.base.BaseActivity
 import com.peter.presentation.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate){
 
     private val tabTitleArray = arrayOf("검색", "북마크")
