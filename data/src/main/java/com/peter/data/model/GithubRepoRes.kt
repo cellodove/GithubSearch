@@ -2,35 +2,35 @@ package com.peter.data.model
 
 import com.google.gson.annotations.SerializedName
 import com.peter.domain.model.GithubRepo
+import com.peter.domain.model.Item
 
 data class GithubRepoRes (
-    @SerializedName("name")
-    private val _name : String,
 
-    @SerializedName("id")
-    private val _id : String,
+    @SerializedName("total_count")
+    private val _total_count : Int,
 
-    @SerializedName("created_at")
-    private val _data : String,
+    @SerializedName("incomplete_results")
+    private val _incomplete_results : Boolean,
 
-    @SerializedName("html_url")
-    private val _url : String,
-
-    @SerializedName("owner")
-    val owner: Owner
+    @SerializedName("items")
+    private val _items : List<Item>
 
 ) : GithubRepo{
-    override val name: String
-        get() = _name
-
-    override val url: String
-        get() = _url
-
-    override val profileImage: String
-        get() = owner.avatar_url
+    override val item: List<Item>
+        get() = _items
 }
 
-data class Owner(
+/*
+data class Item(
+    @SerializedName("login")
+    val login : String,
+
+    @SerializedName("url")
+    val url : String,
+
     @SerializedName("avatar_url")
-    val avatar_url : String
-)
+    val avatar_url : String,
+
+    @SerializedName("html_url")
+    val html_url : String
+)*/

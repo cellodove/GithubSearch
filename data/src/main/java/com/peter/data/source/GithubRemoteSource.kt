@@ -5,13 +5,13 @@ import com.peter.data.service.GithubService
 import javax.inject.Inject
 
 interface GithubRemoteSource {
-    suspend fun getRepos(owner : String) : List<GithubRepoRes>
+    suspend fun getRepos(owner : String) : GithubRepoRes
 }
 
 class GithubRemoteSourceImpl @Inject constructor(
     private val githubService: GithubService
 ) : GithubRemoteSource{
-    override suspend fun getRepos(owner: String): List<GithubRepoRes> {
+    override suspend fun getRepos(owner: String): GithubRepoRes {
         return githubService.getRepos(owner)
     }
 }

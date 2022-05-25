@@ -3,9 +3,10 @@ package com.peter.data.service
 import com.peter.data.model.GithubRepoRes
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GithubService {
 
-    @GET("users/{owner}/repos")
-    suspend fun getRepos(@Path("owner") owner : String) : List<GithubRepoRes>
+    @GET("search/users")
+    suspend fun getRepos(@Query("q") q : String) : GithubRepoRes
 }
