@@ -27,7 +27,15 @@ dependencies {
 
     implementation(Libraries.GLIDE)
     annotationProcessor(Libraries.GLIDE_ANNOTATION)
-    
+
+    implementation(Paging.PAGING_RUNTIME)
+    implementation(Paging.PAGING_COMMON)
+    implementation(Paging.PAGING_RXJAVA2)
+    implementation(Paging.PAGING_RXJAVA3)
+    implementation(Paging.PAGING_GUAVA)
+    implementation(Paging.PAGING_COMPOSE)
+
+
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"

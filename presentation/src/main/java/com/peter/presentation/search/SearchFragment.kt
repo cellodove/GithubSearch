@@ -33,7 +33,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private fun subscribeToLiveData() {
         viewModel.githubRepositories.observe(viewLifecycleOwner) {
-            (binding.recyclerView.adapter as SearchAdapter).setItems(it)
+            (binding.recyclerView.adapter as SearchAdapter).setItems(it.item)
         }
     }
 }

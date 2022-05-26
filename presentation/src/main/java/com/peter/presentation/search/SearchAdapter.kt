@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.peter.domain.model.GithubRepo
+import com.peter.domain.model.Item
 import com.peter.presentation.databinding.SearchItemBinding
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
-    private val items = mutableListOf<GithubRepo>()
+    private val items = mutableListOf<Item>()
 
-    fun setItems(items: List<GithubRepo>) {
+    fun setItems(items: List<Item>) {
         this.items.clear()
         this.items.addAll(items)
 
@@ -32,11 +33,11 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
 
 
     class ViewHolder(private val binding: SearchItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(repo : GithubRepo){
-            binding.repoName.text = repo.name
+        fun bind(repo : Item){
+            binding.repoName.text = repo.login
             binding.repoUrl.text = repo.url
             Glide.with(binding.root)
-                .load(repo.profileImage)
+                .load(repo.avatar_url)
                 .override(100,100)
                 .into(binding.profileImage)
         }
