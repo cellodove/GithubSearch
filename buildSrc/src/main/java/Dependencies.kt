@@ -1,5 +1,3 @@
-import Versions.PAGING_VERSION
-
 object Versions {
     const val KOTLIN_VERSION = "1.5.0"
     const val KOTLINX_COROUTINES = "1.5.0"
@@ -23,7 +21,6 @@ object Versions {
     const val ESPRESSO_CORE = "3.3.0"
 
     const val GLIDE_VER = "4.11.0"
-    const val PAGING_VERSION = "3.0.0"
 }
 
 object Kotlin {
@@ -67,14 +64,4 @@ object Test {
     const val JUNIT         = "junit:junit:${Versions.JUNIT}"
     const val ANDROID_JUNIT = "androidx.test.ext:junit:${Versions.ANDROID_JUNIT}"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
-}
-
-object Paging{
-    const val PAGING_RUNTIME = "androidx.paging:paging-runtime:$PAGING_VERSION"
-    const val PAGING_COMMON  = "androidx.paging:paging-common:$PAGING_VERSION"
-    const val PAGING_RXJAVA2 = "androidx.paging:paging-rxjava2:$PAGING_VERSION"
-    const val PAGING_RXJAVA3 = "androidx.paging:paging-rxjava3:$PAGING_VERSION"
-    const val PAGING_GUAVA   = "androidx.paging:paging-guava:$PAGING_VERSION"
-    const val PAGING_COMPOSE = "androidx.paging:paging-compose:1.0.0-alpha09"
-
 }
