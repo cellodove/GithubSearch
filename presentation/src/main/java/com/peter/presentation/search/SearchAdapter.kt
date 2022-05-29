@@ -11,6 +11,10 @@ import com.peter.presentation.databinding.SearchItemBinding
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
     private val items = mutableListOf<Item>()
 
+    interface ItemClickListener {
+        fun onClick(clickData : Item)
+    }
+
     fun setItems(items: List<Item>) {
         this.items.clear()
         this.items.addAll(items)
