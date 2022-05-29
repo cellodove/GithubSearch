@@ -10,7 +10,7 @@ object Versions {
     const val ACTIVITY_KTX = "1.2.3"
     const val FRAGMENT_KTX = "1.3.4"
     const val LIFECYCLE_KTX = "2.3.1"
-    const val ROOM = "2.3.0"
+    const val ROOM = "2.4.2"
 
     const val HILT = "2.35.1"
     const val MATERIAL = "1.3.0"
@@ -76,5 +76,4 @@ object Paging{
     const val PAGING_RXJAVA3 = "androidx.paging:paging-rxjava3:$PAGING_VERSION"
     const val PAGING_GUAVA   = "androidx.paging:paging-guava:$PAGING_VERSION"
     const val PAGING_COMPOSE = "androidx.paging:paging-compose:1.0.0-alpha09"
-
 }

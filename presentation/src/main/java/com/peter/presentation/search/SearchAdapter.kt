@@ -11,8 +11,12 @@ import com.peter.presentation.databinding.SearchItemBinding
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
     private val items = mutableListOf<Item>()
 
-    interface ItemClickListener {
-        fun onClick(clickData : Item)
+    interface OnItemClickListener{
+        fun onItemClick(item : Item)
+    }
+    private var listener : OnItemClickListener? = null
+    fun setOnItemClickListener(listener : OnItemClickListener) {
+        this.listener = listener
     }
 
     fun setItems(items: List<Item>) {
@@ -36,7 +40,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
     }
 
 
-    class ViewHolder(private val binding: SearchItemBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: SearchItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(repo : Item){
             binding.repoName.text = repo.login
             binding.repoUrl.text = repo.url
@@ -44,6 +48,15 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
                 .load(repo.avatar_url)
                 .override(100,100)
                 .into(binding.profileImage)
+
+            binding.bookMark.setOnClickListener {
+                if (binding.bookMark.isActivated){
+
+                }else{
+
+                }
+                listener?.onItemClick(repo)
+            }
         }
     }
 }
