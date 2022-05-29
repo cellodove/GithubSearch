@@ -14,10 +14,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate){
     private val viewModel: MainViewModel by viewModels()
+    private val adapter: SearchAdapter by lazy { SearchAdapter() }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerView.adapter = SearchAdapter()
+        binding.recyclerView.adapter = adapter
         binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
         binding.searchButton.setOnClickListener {
             val owner = binding.searchEditText.text.toString()

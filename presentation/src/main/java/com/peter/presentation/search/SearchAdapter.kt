@@ -2,13 +2,16 @@ package com.peter.presentation.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.LoadStateAdapter
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.peter.domain.model.GithubRepo
 import com.peter.domain.model.Item
 import com.peter.presentation.databinding.SearchItemBinding
 
-class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
+class SearchAdapter : PagingDataAdapter<Item,SearchAdapter.ViewHolder>(diffCallback){
     private val items = mutableListOf<Item>()
 
     fun setItems(items: List<Item>) {
@@ -18,19 +21,14 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        return ViewHolder(SearchItemBinding.inflate(layoutInflater))
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
     }
 
-    override fun getItemCount(): Int {
-        return items.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        return ViewHolder(SearchItemBinding.inflate(layoutInflater))
     }
-
 
     class ViewHolder(private val binding: SearchItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(repo : Item){
@@ -40,6 +38,18 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
                 .load(repo.avatar_url)
                 .override(100,100)
                 .into(binding.profileImage)
+        }
+    }
+
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<Item>() {
+            override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 }
