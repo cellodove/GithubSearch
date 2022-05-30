@@ -14,8 +14,8 @@ interface LocalDao {
     fun getAll() : List<LocalGithubRepo>
 
     @Insert
-    fun insertItem(item: Item)
+    fun insertItem(item: LocalGithubRepo)
 
     @Delete
-    fun deleteItem(item: Item)
+    fun deleteItem(item: LocalGithubRepo)
 }

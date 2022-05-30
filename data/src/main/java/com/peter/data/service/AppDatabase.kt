@@ -9,7 +9,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Database(entities = [LocalDao::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
+    abstract fun localDao() : LocalDao
+
     companion object{
+        @Volatile
         private lateinit var instance : AppDatabase
 
         fun getInstance(context: Context) : AppDatabase{
@@ -26,5 +29,4 @@ abstract class AppDatabase : RoomDatabase(){
             return instance
         }
     }
-    abstract fun localDao() : LocalDao
 }

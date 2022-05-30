@@ -3,8 +3,9 @@ package com.peter.presentation.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 
-open class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
     private val _isLoading by lazy { MutableLiveData(false) }
     val isLoading: LiveData<Boolean> by lazy { _isLoading }
