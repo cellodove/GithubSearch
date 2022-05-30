@@ -21,7 +21,7 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(AndroidX.ROOM_RUNTIME)
     implementation(AndroidX.ROOM_KTX)
-    annotationProcessor(AndroidX.ROOM_COMPILER)
+    kapt(AndroidX.ROOM_COMPILER)
 
     implementation(Libraries.RETROFIT)
     implementation(Libraries.RETROFIT_CONVERTER_GSON)

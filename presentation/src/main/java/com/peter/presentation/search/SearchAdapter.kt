@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.peter.domain.model.GithubRepo
 import com.peter.domain.model.Item
 import com.peter.presentation.databinding.SearchItemBinding
+import javax.inject.Inject
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
     private val items = mutableListOf<Item>()
@@ -51,11 +52,10 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
 
             binding.bookMark.setOnClickListener {
                 if (binding.bookMark.isActivated){
-
+                    listener?.onItemClick(repo)
                 }else{
 
                 }
-                listener?.onItemClick(repo)
             }
         }
     }

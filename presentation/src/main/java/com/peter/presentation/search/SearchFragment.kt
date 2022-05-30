@@ -35,6 +35,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         searchAdapter.setOnItemClickListener(object : SearchAdapter.OnItemClickListener{
             override fun onItemClick(item: Item) {
                 Toast.makeText(requireContext(),item.url,Toast.LENGTH_SHORT).show()
+                viewModel.bookmarkSave(item)
             }
         })
     }

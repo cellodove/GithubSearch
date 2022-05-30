@@ -5,8 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.peter.data.model.LocalGithubRepo
-import com.peter.domain.model.Item
-
 
 @Dao
 interface LocalDao {
