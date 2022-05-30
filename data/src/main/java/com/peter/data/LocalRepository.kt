@@ -13,8 +13,8 @@ class LocalRepository @Inject constructor(private val localDao: LocalDao) {
         localDao.insertItem(item)
     }
 
-    fun getAllItem(){
-        localDao.getAll()
+    fun getAllItem(): List<LocalGithubRepo>{
+        return localDao.getAll()
     }
 
     fun deleteItem(item: LocalGithubRepo){

@@ -49,6 +49,7 @@
 
     <androidx.appcompat.widget.AppCompatToggleButton
         android:id="@+id/bookMark"
+        android:checked="true"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"

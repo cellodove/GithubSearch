@@ -11,6 +11,8 @@ import com.peter.domain.repository.GithubRepository
 import com.peter.domain.usecase.GetGithubReposUseCase
 import com.peter.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,8 +22,13 @@ class MainViewModel @Inject constructor(
     private val localRepository: LocalRepository
 ) : BaseViewModel() {
 
+    private val scope = CoroutineScope(Dispatchers.IO)
+
     private val _githubRepositories = MutableLiveData<GithubRepo>()
     val githubRepositories: LiveData<GithubRepo> = _githubRepositories
+
+    private val _localRepositories = MutableLiveData<List<LocalGithubRepo>>()
+    val localRepositories: LiveData<List<LocalGithubRepo>> = _localRepositories
 
     fun getGithubRepositories(owner: String) {
         getGithubReposUseCase(owner, viewModelScope) {
@@ -31,8 +38,21 @@ class MainViewModel @Inject constructor(
 
     fun bookmarkSave(item :Item){
         val localData = LocalGithubRepo(login = item.login, url = item.url, avatar_url = item.avatar_url, html_url = item.html_url)
-        viewModelScope.launch {
+        scope.launch {
             localRepository.saveItem(localData)
+        }
+    }
+
+    fun bookmarkDelete(item :Item){
+        val localData = LocalGithubRepo(login = item.login, url = item.url, avatar_url = item.avatar_url, html_url = item.html_url)
+        scope.launch {
+            localRepository.deleteItem(localData)
+        }
+    }
+
+    fun bookmarkGet(){
+        scope.launch {
+            _localRepositories.postValue(localRepository.getAllItem())
         }
     }
 }
