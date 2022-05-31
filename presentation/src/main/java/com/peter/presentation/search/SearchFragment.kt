@@ -6,8 +6,6 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.peter.domain.model.Item
-import com.peter.domain.model.LocalGithubRepo
 import com.peter.presentation.MainViewModel
 import com.peter.presentation.base.BaseFragment
 import com.peter.presentation.databinding.FragmentSearchBinding
@@ -16,11 +14,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate){
     private val viewModel: MainViewModel by viewModels()
-    private val searchAdapter :SearchAdapter by lazy { SearchAdapter() }
+    private val adapter: SearchAdapter by lazy { SearchAdapter() }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.bookmarkGet()
-        binding.recyclerView.adapter = searchAdapter
+
+        binding.recyclerView.adapter = adapter
         binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
         binding.searchButton.setOnClickListener {
             val owner = binding.searchEditText.text.toString()
@@ -32,26 +30,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
         }
         subscribeToLiveData()
-
-        searchAdapter.setOnItemClickListener(object : SearchAdapter.OnItemClickListener{
-            override fun onItemClick(item: Item, isBookmark : Boolean) {
-                if (isBookmark){
-                    val data = LocalGithubRepo(item.login,item.url, item.avatar_url, item.html_url,false)
-                    viewModel.bookmarkDelete(data)
-                }else{
-                    val data = LocalGithubRepo(item.login,item.url, item.avatar_url, item.html_url,true)
-                    viewModel.bookmarkSave(data)
-                }
-                Toast.makeText(requireContext(),item.url,Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     private fun subscribeToLiveData() {
-        viewModel.resLocalRepositories.observe(viewLifecycleOwner){ bookmark ->
-            viewModel.githubRepositories.observe(viewLifecycleOwner) {
-                searchAdapter.setItems(it.item,bookmark)
-            }
+        viewModel.githubRepositories.observe(viewLifecycleOwner) {
+            (binding.recyclerView.adapter as SearchAdapter).setItems(it)
         }
     }
 }

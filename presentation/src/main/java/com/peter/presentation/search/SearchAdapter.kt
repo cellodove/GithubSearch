@@ -4,28 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.peter.domain.model.Item
-import com.peter.domain.model.LocalGithubRepo
+import com.peter.domain.model.GithubRepo
 import com.peter.presentation.databinding.SearchItemBinding
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
-    private val items = mutableListOf<Item>()
-    private val bookmark = mutableListOf<LocalGithubRepo>()
+    private val items = mutableListOf<GithubRepo>()
 
-    interface OnItemClickListener{
-        fun onItemClick(item : Item, isBookmark : Boolean)
-    }
-    private var listener : OnItemClickListener? = null
-    fun setOnItemClickListener(listener : OnItemClickListener) {
-        this.listener = listener
-    }
-
-    fun setItems(items: List<Item>, bookmarks : List<LocalGithubRepo>) {
+    fun setItems(items: List<GithubRepo>) {
         this.items.clear()
         this.items.addAll(items)
-
-        this.bookmark.clear()
-        this.bookmark.addAll(bookmarks)
 
         notifyDataSetChanged()
     }
@@ -44,29 +31,14 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
     }
 
 
-    inner class ViewHolder(private val binding: SearchItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(repo : Item){
-            binding.repoName.text = repo.login
+    class ViewHolder(private val binding: SearchItemBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(repo : GithubRepo){
+            binding.repoName.text = repo.name
             binding.repoUrl.text = repo.url
             Glide.with(binding.root)
-                .load(repo.avatar_url)
+                .load(repo.profileImage)
                 .override(100,100)
                 .into(binding.profileImage)
-
-
-            bookmark.forEach {
-                if (it.login == repo.login){
-                    binding.bookMark.isActivated = true
-                }
-            }
-
-            binding.bookMark.setOnClickListener {
-                if (binding.bookMark.isActivated){
-                    listener?.onItemClick(repo,true)
-                }else{
-                    listener?.onItemClick(repo,false)
-                }
-            }
         }
     }
 }
