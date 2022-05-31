@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.peter.presentation.MainViewModel
 import com.peter.presentation.base.BaseFragment
 import com.peter.presentation.databinding.FragmentBookmarkBinding
-import com.peter.presentation.search.SearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +31,7 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding>(FragmentBookmarkB
 
 
     private fun subscribeToLiveData() {
-        viewModel.localRepositories.observe(viewLifecycleOwner){
+        viewModel.resLocalRepositories.observe(viewLifecycleOwner){
             bookmarkAdapter.setItems(it)
         }
     }

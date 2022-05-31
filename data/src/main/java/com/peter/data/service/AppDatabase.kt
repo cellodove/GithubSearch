@@ -1,14 +1,12 @@
 package com.peter.data.service
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.peter.data.model.LocalGithubRepo
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.peter.data.model.LocalGithubRepoRes
 
-@Database(entities = [LocalGithubRepo::class], version = 1, exportSchema = false)
+@Database(entities = [LocalGithubRepoRes::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun localDao() : LocalDao
 

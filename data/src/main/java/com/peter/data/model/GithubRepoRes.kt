@@ -19,18 +19,3 @@ data class GithubRepoRes (
     override val item: List<Item>
         get() = _items
 }
-
-/*
-data class Item(
-    @SerializedName("login")
-    val login : String,
-
-    @SerializedName("url")
-    val url : String,
-
-    @SerializedName("avatar_url")
-    val avatar_url : String,
-
-    @SerializedName("html_url")
-    val html_url : String
-)*/

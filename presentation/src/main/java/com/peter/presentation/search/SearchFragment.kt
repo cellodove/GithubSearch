@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.peter.domain.model.Item
+import com.peter.domain.model.Bookmark
 import com.peter.presentation.MainViewModel
 import com.peter.presentation.base.BaseFragment
 import com.peter.presentation.databinding.FragmentSearchBinding
@@ -18,7 +19,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private val searchAdapter :SearchAdapter by lazy { SearchAdapter() }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.bookmarkGet()
         binding.recyclerView.adapter = searchAdapter
         binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
         binding.searchButton.setOnClickListener {
@@ -35,9 +36,33 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         searchAdapter.setOnItemClickListener(object : SearchAdapter.OnItemClickListener{
             override fun onItemClick(item: Item, isBookmark : Boolean) {
                 if (isBookmark){
-                    viewModel.bookmarkDelete(item)
+                    val data = object : Bookmark{
+                        override val login: String
+                            get() = item.login
+                        override val url: String
+                            get() = item.url
+                        override val avatarUrl: String
+                            get() = item.avatar_url
+                        override val htmlUrl: String
+                            get() = item.html_url
+                        override val isBookmark: Boolean
+                            get() = false
+                    }
+                    viewModel.bookmarkDelete(data)
                 }else{
-                    viewModel.bookmarkSave(item)
+                    val data = object : Bookmark{
+                        override val login: String
+                            get() = item.login
+                        override val url: String
+                            get() = item.url
+                        override val avatarUrl: String
+                            get() = item.avatar_url
+                        override val htmlUrl: String
+                            get() = item.html_url
+                        override val isBookmark: Boolean
+                            get() = true
+                    }
+                    viewModel.bookmarkSave(data)
                 }
                 Toast.makeText(requireContext(),item.url,Toast.LENGTH_SHORT).show()
             }
@@ -45,8 +70,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun subscribeToLiveData() {
-        viewModel.githubRepositories.observe(viewLifecycleOwner) {
-            searchAdapter.setItems(it.item)
+        viewModel.resLocalRepositories.observe(viewLifecycleOwner){ bookmark ->
+            viewModel.githubRepositories.observe(viewLifecycleOwner) {
+                searchAdapter.setItems(it.item,bookmark)
+            }
         }
     }
 }
