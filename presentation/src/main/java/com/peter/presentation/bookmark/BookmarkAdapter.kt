@@ -4,21 +4,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.peter.data.model.ResLocalGithubRepo
+import com.peter.domain.model.LocalGithubRepo
 import com.peter.presentation.databinding.BookmarkItemBinding
 
 class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.ViewHolder>(){
-    private val items = mutableListOf<ResLocalGithubRepo>()
+    private val items = mutableListOf<LocalGithubRepo>()
 
     interface OnItemClickListener{
-        fun onItemClick(item : ResLocalGithubRepo, isBookmark : Boolean)
+        fun onItemClick(item : LocalGithubRepo, isBookmark : Boolean)
     }
     private var listener : OnItemClickListener? = null
     fun setOnItemClickListener(listener : OnItemClickListener) {
         this.listener = listener
     }
 
-    fun setItems(items: List<ResLocalGithubRepo>) {
+    fun setItems(items: List<LocalGithubRepo>) {
         this.items.clear()
         this.items.addAll(items)
 
@@ -40,11 +40,11 @@ class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.ViewHolder>(){
 
 
     inner class ViewHolder(private val binding: BookmarkItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(repoRes : ResLocalGithubRepo){
+        fun bind(repoRes : LocalGithubRepo){
             binding.repoName.text = repoRes.login
             binding.repoUrl.text = repoRes.url
             Glide.with(binding.root)
-                .load(repoRes.avatar_url)
+                .load(repoRes.avatarUrl)
                 .override(100,100)
                 .into(binding.profileImage)
 

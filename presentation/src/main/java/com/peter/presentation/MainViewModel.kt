@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.peter.domain.model.GithubRepo
-import com.peter.domain.model.Bookmark
+import com.peter.domain.model.LocalGithubRepo
 import com.peter.domain.usecase.DeleteLocalGithubReposUseCase
 import com.peter.domain.usecase.GetAllLocalGithubReposUseCase
 import com.peter.domain.usecase.GetGithubReposUseCase
@@ -24,8 +24,8 @@ class MainViewModel @Inject constructor(
     private val _githubRepositories = MutableLiveData<GithubRepo>()
     val githubRepositories: LiveData<GithubRepo> = _githubRepositories
 
-    private val _localRepositories = MutableLiveData<List<Bookmark>>()
-    val resLocalRepositories: LiveData<List<Bookmark>> = _localRepositories
+    private val _localRepositories = MutableLiveData<List<LocalGithubRepo>>()
+    val resLocalRepositories: LiveData<List<LocalGithubRepo>> = _localRepositories
 
     fun getGithubRepositories(owner: String) {
         getGithubReposUseCase(owner, viewModelScope) {
@@ -33,11 +33,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun bookmarkSave(item : Bookmark){
+    fun bookmarkSave(item : LocalGithubRepo){
         saveLocalGithubReposUseCase.invoke(item,viewModelScope)
     }
 
-    fun bookmarkDelete(item : Bookmark){
+    fun bookmarkDelete(item : LocalGithubRepo){
         deleteLocalGithubReposUseCase.invoke(item,viewModelScope)
     }
 

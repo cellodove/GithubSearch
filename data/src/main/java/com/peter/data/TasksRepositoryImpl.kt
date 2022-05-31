@@ -1,26 +1,27 @@
 package com.peter.data
 
 import com.peter.data.source.GithubRemoteSource
-import com.peter.domain.model.Bookmark
+import com.peter.data.source.LocalGithubRemoteSource
+import com.peter.domain.model.LocalGithubRepo
 import com.peter.domain.model.GithubRepo
 import com.peter.domain.repository.TasksRepository
 import javax.inject.Inject
 
 class TasksRepositoryImpl@Inject constructor(
-    private val githubRemoteSource : GithubRemoteSource
+    private val githubRemoteSource : GithubRemoteSource,
+    private val localGithubRemoteSource : LocalGithubRemoteSource
 ) : TasksRepository {
 
-
-    override fun saveItem(item: Bookmark) {
-        TODO("Not yet implemented")
+    override fun saveItem(item: LocalGithubRepo) {
+        localGithubRemoteSource.saveItem(item)
     }
 
-    override fun getAllItem(): List<Bookmark> {
-        TODO("Not yet implemented")
+    override fun getAllItem(): List<LocalGithubRepo> {
+        return localGithubRemoteSource.getAllItem()
     }
 
-    override fun deleteItem(item: Bookmark) {
-        TODO("Not yet implemented")
+    override fun deleteItem(item: LocalGithubRepo) {
+        localGithubRemoteSource.deleteItem(item)
     }
 
     override suspend fun getRepos(owner: String): GithubRepo {

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.peter.domain.model.Item
-import com.peter.domain.model.Bookmark
+import com.peter.domain.model.LocalGithubRepo
 import com.peter.presentation.databinding.SearchItemBinding
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
     private val items = mutableListOf<Item>()
-    private val bookmark = mutableListOf<Bookmark>()
+    private val bookmark = mutableListOf<LocalGithubRepo>()
 
     interface OnItemClickListener{
         fun onItemClick(item : Item, isBookmark : Boolean)
@@ -20,7 +20,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
         this.listener = listener
     }
 
-    fun setItems(items: List<Item>, bookmarks : List<Bookmark>) {
+    fun setItems(items: List<Item>, bookmarks : List<LocalGithubRepo>) {
         this.items.clear()
         this.items.addAll(items)
 

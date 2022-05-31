@@ -3,26 +3,23 @@ package com.peter.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.peter.domain.model.Bookmark
+import com.peter.domain.model.LocalGithubRepo
 
 @Entity(tableName = "item")
 data class LocalGithubRepoRes(
-    @PrimaryKey(autoGenerate = true)
-    val id : Long = 0,
-
+    @PrimaryKey
     @ColumnInfo(name = "login")
-     val login : String,
+    val login : String,
 
     @ColumnInfo(name = "url")
-     val url : String,
+    val url : String,
 
     @ColumnInfo(name = "avatarUrl")
-     val avatarUrl : String,
+    val avatarUrl : String,
 
     @ColumnInfo(name = "htmlUrl")
-     val htmlUrl : String,
+    val htmlUrl : String,
 
     @ColumnInfo(name = "isBookmark")
-     val isBookmark : Boolean
-
+    val isBookmark : Boolean
 )
