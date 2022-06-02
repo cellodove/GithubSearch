@@ -6,7 +6,6 @@ import com.peter.domain.model.LocalGithubItem
 fun mapperToLocalGithubRepo(localItem : List<LocalGithubItem>):List<LocalGithubRepo>{
     return localItem.toList().map {
         LocalGithubRepo(
-            it.id,
             it.login,
             it.url,
             it.avatarUrl,
@@ -16,7 +15,6 @@ fun mapperToLocalGithubRepo(localItem : List<LocalGithubItem>):List<LocalGithubR
 }
 
 fun LocalGithubItem.map() = LocalGithubRepo(
-    id,
     login,
     url,
     avatarUrl,
@@ -27,7 +25,6 @@ fun LocalGithubItem.map() = LocalGithubRepo(
 fun mapperToLocalGithubItem(localRepo : List<LocalGithubRepo>) : List<LocalGithubItem>{
     return localRepo.toList().map {
         LocalGithubItem(
-            it.id,
             it.login,
             it.url,
             it.avatar_url,
@@ -37,7 +34,6 @@ fun mapperToLocalGithubItem(localRepo : List<LocalGithubRepo>) : List<LocalGithu
 }
 
 fun LocalGithubRepo.map() = LocalGithubItem(
-    id,
     login,
     url,
     avatar_url,

@@ -8,7 +8,7 @@ import com.peter.data.model.LocalGithubRepo
 
 @Dao
 interface LocalDao {
-    @Query("SELECT * FROM item ORDER BY id DESC")
+    @Query("SELECT * FROM item ORDER BY login DESC")
     fun getAll() : List<LocalGithubRepo>
 
     @Insert

@@ -18,7 +18,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private val searchAdapter :SearchAdapter by lazy { SearchAdapter() }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.bookmarkGet()
         binding.recyclerView.adapter = searchAdapter
         binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
         binding.searchButton.setOnClickListener {
@@ -44,8 +44,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun subscribeToLiveData() {
-        viewModel.githubRepositories.observe(viewLifecycleOwner) {
-            searchAdapter.setItems(it.item)
+        viewModel.localRepositories.observe(viewLifecycleOwner){ bookmarks ->
+            viewModel.githubRepositories.observe(viewLifecycleOwner) {
+                searchAdapter.setItems(it.item,bookmarks)
+            }
         }
     }
 }

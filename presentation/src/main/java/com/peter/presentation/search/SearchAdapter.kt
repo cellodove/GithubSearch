@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.peter.domain.model.GithubRepo
 import com.peter.domain.model.Item
+import com.peter.domain.model.LocalGithubItem
 import com.peter.presentation.MainViewModel
 import com.peter.presentation.databinding.SearchItemBinding
 import javax.inject.Inject
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
     private val items = mutableListOf<Item>()
+    private val bookmarks = mutableListOf<LocalGithubItem>()
 
     interface OnItemClickListener{
         fun onItemClick(item : Item, isBookmark : Boolean)
@@ -22,9 +24,11 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
         this.listener = listener
     }
 
-    fun setItems(items: List<Item>) {
+    fun setItems(items: List<Item>, bookmark : List<LocalGithubItem>) {
         this.items.clear()
         this.items.addAll(items)
+        this.bookmarks.clear()
+        this.bookmarks.addAll(bookmark)
 
         notifyDataSetChanged()
     }
@@ -51,12 +55,15 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>(){
                 .load(repo.avatar_url)
                 .override(100,100)
                 .into(binding.profileImage)
+            bookmarks.forEach {
+                binding.bookMark.isChecked = repo.login == it.login
+            }
 
             binding.bookMark.setOnClickListener {
-                if (binding.bookMark.isActivated){
-                    listener?.onItemClick(repo,true)
-                }else{
+                if (binding.bookMark.isChecked){
                     listener?.onItemClick(repo,false)
+                }else{
+                    listener?.onItemClick(repo,true)
                 }
             }
         }

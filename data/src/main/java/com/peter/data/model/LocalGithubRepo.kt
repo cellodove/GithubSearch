@@ -5,9 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "item")
 data class LocalGithubRepo (
-    @PrimaryKey(autoGenerate = true)
-    val id : Long = 0,
-
+    @PrimaryKey()
     val login : String,
 
     val url : String,
