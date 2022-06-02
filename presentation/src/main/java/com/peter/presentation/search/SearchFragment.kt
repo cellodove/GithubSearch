@@ -28,7 +28,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }else{
                 viewModel.getGithubRepositories(owner)
             }
-
         }
         subscribeToLiveData()
 
