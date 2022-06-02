@@ -56,11 +56,7 @@ class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.ViewHolder>(){
                 .into(binding.profileImage)
 
             binding.bookMark.setOnClickListener {
-                if (binding.bookMark.isActivated){
-                    listener?.onItemClick(repo,true)
-                }else{
-                    listener?.onItemClick(repo,false)
-                }
+                listener?.onItemClick(repo,true)
             }
         }
     }

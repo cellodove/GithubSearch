@@ -43,6 +43,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.bookmarkGet()
+    }
+
     private fun subscribeToLiveData() {
         viewModel.localRepositories.observe(viewLifecycleOwner){ bookmarks ->
             viewModel.githubRepositories.observe(viewLifecycleOwner) {

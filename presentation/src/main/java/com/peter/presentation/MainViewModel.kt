@@ -54,6 +54,13 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun bookmarkDeleteForLocal(item :LocalGithubItem){
+        scope.launch {
+            deleteLocalGithubReposUseCase(item,viewModelScope)
+            bookmarkGet()
+        }
+    }
+
     fun bookmarkGet(){
         scope.launch {
             getAllLocalGithubReposUseCase(viewModelScope){
